@@ -31,11 +31,32 @@ pip install -r requirements.txt
 ```bash
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
   --remote-debugging-port=9222 \
-  --user-data-dir="/tmp/chrome-fb-scraper"
+  --user-data-dir="/tmp/chrome-fb-scraper" \
+  --disable-notifications
 ```
 
 - In that Chrome window, log into Facebook so pages and posts are accessible.
 - The code expects the debugger address at `localhost:9222`.
+
+Windows example (Command Prompt):
+
+```bat
+"C:\Program Files\Google\Chrome\Application\chrome.exe" ^
+  --remote-debugging-port=9222 ^
+  --user-data-dir="%LOCALAPPDATA%\Temp\chrome-fb-scraper" ^
+  --disable-notifications
+```
+
+Windows example (PowerShell):
+
+```powershell
+& "C:\Program Files\Google\Chrome\Application\chrome.exe" `
+  --remote-debugging-port=9222 `
+  --user-data-dir="$env:LOCALAPPDATA\Temp\chrome-fb-scraper" `
+  --disable-notifications
+```
+
+- The `--disable-notifications` flag suppresses site notification popups while scraping.
 
 ### Usage
 There are two steps: extract post links from a page, then scrape each post and its comments.
